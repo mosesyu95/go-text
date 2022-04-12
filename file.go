@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"strings"
 )
 
 func IsText(fp string) (bool, error) {
@@ -23,7 +24,7 @@ func IsText(fp string) (bool, error) {
 	if err != nil {
 		return false, err
 	}
-	if string(outPut) == "text/plain" {
+	if strings.HasPrefix(string(outPut), "text/") {
 		return true, err
 	}
 	return false, nil
